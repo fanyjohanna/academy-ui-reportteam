@@ -40,11 +40,11 @@ export class projects{
         this.totalAssignment = new RestService("core", `accounts/${id}/count/closedAssignment`);
 
 
-        this.accountEfficiency = new RestService ("core", `accounts/${id}/count/efficiency`)
-        this.efficiency = await this.accountEfficiency.get();
+        // this.accountEfficiency = new RestService ("core", `accounts/${id}/count/efficiency`)
+        // this.efficiency = await this.accountEfficiency.get();
 
-        this.viewAssignment = new RestService("core",`accounts/${id}/count/efficiency/${this.date}`);
-        this.viewAssignmentReport = await this.viewAssignment.get();
+       // this.viewAssignment = new RestService("core",`accounts/${id}/count/efficiency/${this.date}`);
+        //this.viewAssignmentReport = await this.viewAssignment.get();
         
     }      
 
@@ -93,7 +93,7 @@ export class projects{
     var loopbackFilter = createLoopbackFilterObject(info, fields)
 
     return Promise
-      .all([this.viewAssignmentReport.count(loopbackFilter.filter), this.viewAssignmentReport.list(loopbackFilter)])
+      .all([this.assignmentService.count(loopbackFilter.filter), this.assignmentService.list(loopbackFilter)])
       .then(results => {
         var count = results[0].count;
         var data = results[1];
@@ -109,36 +109,36 @@ export class projects{
 
   getEfficiency(){
     console.log("wake up");
-    this.efficiencyCount = this.efficiency.efficiency;
-    console.log(this.efficiency.efficiency);
-    console.log("wake up")
-    return this.accountEfficiency.get();
+    // this.efficiencyCount = this.efficiency.efficiency;
+    // console.log(this.efficiency.efficiency);
+    // console.log("wake up")
+    // return this.accountEfficiency.get();
   }
 
-  changeCallback(){
-    var date = this.date;
-    var arg = arg.data;
+  // changeCallback(){
+  //   var date = this.date;
+  //   var arg = arg.data;
 
-  }
+  // }
 
-  viewReportAssignment(){
-    var date = this.date;
-    console.log();
-    viewAssignment;
-    console.log("lihat assignment");
-    this.assignmentTable.refresh();
+  // viewReportAssignment(){
+  //   var date = this.date;
+  //   console.log();
+  //   viewAssignment;
+  //   console.log("lihat assignment");
+  //   this.assignmentTable.refresh();
 
-  }
+  // }
 
   // async getEfficiencyByDate(date){
   //   this.accountEfficiencyByDate = new RestService ("core", `accounts/${id}/count/efficiency/${date}`)
   //   this.efficiencyByDate = await this.accountEfficiencyByDate.get();
   // }
 
-  // changeCallback($event) {
-  //   console.log(this.date)
-  //   this.getEfficiencyByDate(this.date)
-  // }
+  changeCallback($event) {
+    console.log(this.date)
+    this.getEfficiencyByDate(this.date)
+  }
 
 
 }

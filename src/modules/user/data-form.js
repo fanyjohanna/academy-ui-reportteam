@@ -38,10 +38,6 @@ export class DataForm {
     this.saveCallback = this.context.saveCallback;
   }
 
-  myFunction() {
-    document.getElementById("panel").style.display = "block";
-}
-
    assignmentsColumns = ["status","budget","elapsed",
     {
         field: "date", 
